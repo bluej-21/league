@@ -21,10 +21,7 @@
     "express-react-views": "^0.10.2",
     "mongoose": "^4.5.8",
     "react": "^15.3.0",
+    "passport": "^0.3.2",
     "react-dom": "^15.3.0"
   }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> faaaaf85a3afd52f2011fefdf28f501909d43b52
