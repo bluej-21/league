@@ -1,18 +1,8 @@
-var React = require('react');
+var express = require('express');
+var router = express.Router();
 
-var HomeComponent = React.createClass({
-    render() {
-        return (
-            <div className="homeComponent">
-                Home Page
-            </div>
-        );
-    }
+router.get('/', function (req, res) {
+    res.render("home");
 });
 
-ReactDOM.render(
-    <HomeComponent />,
-    document.getElementById('content')
-);
-
-module.export = HomeComponent;
+module.exports = router;
