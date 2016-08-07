@@ -1,4 +1,5 @@
 var express = require('express');
+var mongoose = require('mongoose');
 var routes = require('./src/routes/index');
 
 var app = express();
