@@ -61,7 +61,7 @@
 	    }
 	});
 
-	ReactDOM.render(React.createElement(HomeComponent, null), document.getElementById('home'));
+	React.render(React.createElement(HomeComponent, null), document.getElementById('home'));
 
 /***/ },
 /* 1 */
