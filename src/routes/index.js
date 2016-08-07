@@ -12,7 +12,7 @@ var HomeComponent = React.createClass({
 
 ReactDOM.render(
     <HomeComponent />,
-    document.getElementByID('content')
+    document.getElementById('content')
 );
 
 module.export = HomeComponent;
