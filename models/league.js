@@ -2,11 +2,11 @@ var mongoose = require('mongoose');
 
 var LeagueSchema = mongoose.Schema({
 	name: String,
-	numberPlayers: Int,
-	numberGames: Int,
-	Players: [Int], // player ids 
-	Games: [Int], // game ids
-	Admins: [Int] // admin ids
+	numberPlayers: Number,
+	numberGames: Number,
+	Players: [Number], // player ids 
+	Games: [Number], // game ids
+	Admins: [Number] // admin ids
 });
 
-module.exports = mongoose.model('League', LeaugeSchema);
+module.exports = mongoose.model('League', LeagueSchema);
