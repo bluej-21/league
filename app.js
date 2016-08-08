@@ -1,6 +1,6 @@
 var express = require('express');
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017');
+mongoose.connect('mongodb://localhost:27017/league');
 
 var routes = require('./src/routes/index');
 
