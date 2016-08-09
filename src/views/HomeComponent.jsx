@@ -1,18 +1,17 @@
 var React = require('react');
+var ReactDOM = require('react-dom');
 
 var HomeComponent = React.createClass({
-    render() {
+    render: function() {
         return (
             <div className="homeComponent">
-                Home Page
+                Home Page in html
             </div>
         );
     }
 });
 
 ReactDOM.render(
-    <HomeComponent />,
-    document.getElementByID('content')
+  <HomeComponent />,
+  document.getElementById('home')
 );
-
-module.export = HomeComponent;
