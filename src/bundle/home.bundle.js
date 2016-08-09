@@ -56,12 +56,12 @@
 	        return React.createElement(
 	            'div',
 	            { className: 'homeComponent' },
-	            'Home Page'
+	            'Home Page in html'
 	        );
 	    }
 	});
 
-	React.render(React.createElement(HomeComponent, null), document.getElementById('home'));
+	ReactDOM.render(React.createElement(HomeComponent, null), document.getElementById('home'));
 
 /***/ },
 /* 1 */

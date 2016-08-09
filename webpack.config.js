@@ -2,8 +2,14 @@ var path = require('path');
 var webpack = require('webpack');
 
 module.exports = {
-    entry: './src/views/HomeComponent.jsx',
-    output: { path: __dirname + '/src/', filename: 'bundle.js' },
+    entry: {
+        home: './src/views/HomeComponent.jsx',
+        about: './src/views/AboutComponent.jsx'
+    },
+    output: { 
+        path: __dirname + '/src/bundle', 
+        filename: '[name].bundle.js' 
+    },
     module: {
         loaders: [
             {

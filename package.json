@@ -17,10 +17,11 @@
   },
   "homepage": "https://github.com/bluej-21/league#readme",
   "dependencies": {
+    "ejs": "^2.5.1",
     "express": "^4.14.0",
     "express-react-views": "^0.10.2",
-    "react": "^15.3.0",
     "passport": "^0.3.2",
+    "react": "^15.3.0",
     "react-dom": "^15.3.0"
   },
   "devDependencies": {
