@@ -1,6 +1,5 @@
 # league
-Colors:
-Blue: #64DFFF
-Green: #9AFB6B
 
-Font:
+##Style 
+
+please read our [styleguide](https://github.com/bluej-21/league/blob/master/Styleguide.md)
