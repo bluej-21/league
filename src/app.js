@@ -11,8 +11,6 @@ var app = express();
  */
 var PORT = process.env.PORT || 8000;
 var TEMPLATES = path.join(__dirname, '/templates');
-console.log(TEMPLATES);
-console.log(__dirname);
 /*
  * Express Settings
  */
