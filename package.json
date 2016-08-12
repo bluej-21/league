@@ -2,9 +2,9 @@
   "name": "league",
   "version": "1.0.0",
   "description": "league of friends",
-  "main": "app.js",
+  "main": "src/app.js",
   "scripts": {
-    "start": "node app.js"
+    "start": "node src/app.js"
   },
   "repository": {
     "type": "git",
@@ -23,7 +23,7 @@
     "passport": "^0.3.2",
     "react": "^15.3.0",
     "react-dom": "^15.3.0",
-    "webpack": "^1.13.1"
+    "webpack": "^1.13.1",
     "react-dom": "^15.3.0"
   },
   "devDependencies": {

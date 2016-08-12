@@ -1,8 +1,9 @@
 var express = require('express');
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/league');
+// mongoose.connect('mongodb://localhost:27017/league');
 
-var routes = require('./src/routes/index');
+var routes = require('./routes/routes');
+var api = require('./routes/api');
 
 /*
  * database
@@ -15,14 +16,15 @@ var db  = mongoose.connection;
 /*
  * test database
  */
-db.on('error', console.error.bind(console, 'connection error'));
-db.on('open', () => {
-	console.log('connected!');
-});
+// db.on('error', console.error.bind(console, 'connection error'));
+// db.on('open', () => {
+// 	console.log('connected!');
+// });
 
 var app = express();
 
-app.use('/', router);
+app.use('/', routes);
+app.use('/api', api);
 
 app.set('port', process.env.PORT || 8000);
 
