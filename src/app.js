@@ -24,8 +24,6 @@ app.use(logger('dev'));
 
 app.use('/', router);
 
-
-
 var server = app.listen(app.get('port'), () => {
     console.log('app started on http://localhost:' + PORT);
 });

@@ -6,7 +6,7 @@ module.exports = {
         home: './src/views/HomeComponent.jsx',
         about: './src/views/AboutComponent.jsx'
     },
-    output: { 
+    output: {
         path: __dirname + '/src/bundle', 
         filename: '[name].bundle.js' 
     },
