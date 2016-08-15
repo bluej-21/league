@@ -3,7 +3,7 @@ var mongoose = require('mongoose');
 var request = require('request');
 var bodyParser = require('body-parser');
 
-mongoose.connect('mongodb://localhost:27017/league');
+mongoose.connect('mongodb://localhost/league');
 
 var Game = require('../models/game');
 var League = require('../models/league');
@@ -17,8 +17,12 @@ var apiRouter = express.Router();
 /*
  * apiRouter settings 
  */
-apiRouter.use( bodyParser.urlencoded({ extended: true }) );
-apiRouter.use( bodyParser.json() );
+apiRouter.use(bodyParser.urlencoded({ extended: true }));
+apiRouter.use(bodyParser.json());
+apiRouter.use((req, res, next) => {
+  console.log('check authentication');
+  next();
+});
 /*
  * test database
  */
@@ -28,9 +32,6 @@ db.on('open', () => {
 	console.log('connected!');
 });
 
-/*
- * GETS
- */
 
 // GET: /api/
 apiRouter.get('/', (req, res) => {
@@ -39,18 +40,57 @@ apiRouter.get('/', (req, res) => {
   });
 });
 
-// GET: /api/games/
-apiRouter.get('/games/', (req, res) => {
-  res.send({
-    games: 'games'
-  });
-});
+/*
+ * Players
+ */
+apiRouter.route('/players')
 
-// GET: /api/games/:game_id
-apiRouter.get('/games/:game_id', (req, res) => {
-  res.send({
-    id: req.params.game_id
+  // POST: api/players
+  .post( (req, res) => {
+    var player = new Player({name: req.body.name});
+
+
+    player.save((err) => {
+      if (err) {
+        res.send(err);
+      }
+      res.json({message: "player created"});
+    });
+  })
+
+  // GET: api/players
+  .get( (req, res) => {
+    Player.find( (err, players) => {
+      if (err) { res.send(err); }
+      res.json(players);
+    });
   });
-});
+
+apiRouter.route('/players/:player_id')
+  // GET: api/players/5
+  .get( (req, res) => {
+    Player.findById(req.params.player_id, (err, player) => {
+      if (err) { res.send(err); }
+      res.json(player);
+    });
+  })
+
+  // PUT: api/players/5
+  .put( (req, res) => {
+    Player.findById(req.res.player_id, (err, player) => {
+      if (err) { res.send(err); }
+
+      // update player name
+      player.name = req.body.name;
+
+      // save player data
+      player.save( (err) => {
+        if (err) { res.send(err); }
+        res.json({
+          message: "player updated"
+        });
+      });
+    });
+  });
 
 module.exports = apiRouter;
