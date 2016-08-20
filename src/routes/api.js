@@ -5,9 +5,13 @@ var bodyParser = require('body-parser');
 
 mongoose.connect('mongodb://localhost/league');
 
+/*
+ * db Objects
+ */
 var Game = require('../models/game');
 var League = require('../models/league');
 var Player = require('../models/player');
+var GameImage = require('../models/gameImg');
 
 var db  = mongoose.connection;
 
@@ -23,10 +27,10 @@ apiRouter.use((req, res, next) => {
   console.log('check authentication');
   next();
 });
+
 /*
  * test database
  */
-
 db.on('error', console.error.bind(console, 'connection error'));
 db.on('open', () => {
 	console.log('connected!');
@@ -38,6 +42,19 @@ apiRouter.get('/', (req, res) => {
   res.send({
     message: 'This is the league api'
   });
+});
+
+// GET: api/gameImages
+apiRouter.get('/gameImages',  (req, res) => {
+  GameImage.find( (err, gameImages) => {
+    if (err) { res.send(err); }
+    res.json(gameImages);
+  });
+});
+
+// GET: api/gameImages/random
+apiRouter.get('/gameImages/random', (req, res) => {
+
 });
 
 /*

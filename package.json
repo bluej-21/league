@@ -6,6 +6,7 @@
   "scripts": {
     "start": "node src/app.js",
     "test": "webpack & npm start",
+    "db": "~/mongodb/bin/mongod --dbpath ~/.data/db &"
   },
   "repository": {
     "type": "git",
