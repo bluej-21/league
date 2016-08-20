@@ -7,7 +7,7 @@ class HomeComponent extends React.Component {
         return (
             <div>
                 <h3>Welcome to League</h3>
-		<GridComponent />
+                <GridComponent />
             </div>
         )
     }

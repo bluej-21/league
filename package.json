@@ -4,7 +4,9 @@
   "description": "league of friends",
   "main": "app.js",
   "scripts": {
-    "start": "node src/app.js"
+    "start": "node src/app.js",
+    "test": "webpack && npm start",
+    "build-css": "sass --watch src/style/sass:src/style/css"
   },
   "repository": {
     "type": "git",
