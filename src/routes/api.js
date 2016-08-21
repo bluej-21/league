@@ -1,21 +1,22 @@
-var express = require('express');
-var mongoose = require('mongoose');
-var request = require('request');
-var bodyParser = require('body-parser');
+import express from 'express';
+import mongoose from 'mongoose';
+import request from 'request';
+import bodyParser from 'body-parser';
 
 mongoose.connect('mongodb://localhost/league');
 
 /*
  * db Objects
  */
-var Game = require('../models/game');
-var League = require('../models/league');
-var Player = require('../models/player');
-var GameImage = require('../models/gameImg');
+import Game from '../models/game';
+import League from '../models/league';
+import Player from '../models/player';
+import GameImage from '../models/gameImg';
 
 var db  = mongoose.connection;
 
-var config = require('../../config');
+import config from '../../config';
+
 var apiRouter = express.Router();
 
 /*
