@@ -1,31 +1,26 @@
-import express from 'express';
+import { Router as router } from 'express';
 import mongoose from 'mongoose';
-import request from 'request';
 import bodyParser from 'body-parser';
-
-mongoose.connect('mongodb://localhost/league');
-
-/*
- * db Objects
- */
 import Game from '../models/game';
 import League from '../models/league';
 import Player from '../models/player';
 import GameImage from '../models/gameImg';
-
-var db  = mongoose.connection;
-
 import config from '../../config';
 
-var apiRouter = express.Router();
+mongoose.connect('mongodb://localhost/league');
+
+const apiRouter = router();
+
+const db = mongoose.connection;
+
 
 /*
- * apiRouter settings 
+ * apiRouter settings
  */
 apiRouter.use(bodyParser.urlencoded({ extended: true }));
 apiRouter.use(bodyParser.json());
 apiRouter.use((req, res, next) => {
-  console.log('check authentication');
+  // check auth
   next();
 });
 
@@ -34,28 +29,32 @@ apiRouter.use((req, res, next) => {
  */
 db.on('error', console.error.bind(console, 'connection error'));
 db.on('open', () => {
-	console.log('connected!');
+	// console.log('connected!');
 });
 
 
 // GET: /api/
 apiRouter.get('/', (req, res) => {
   res.send({
-    message: 'This is the league api'
+    message: 'This is the league api',
   });
 });
 
 // GET: api/gameImages
-apiRouter.get('/gameImages',  (req, res) => {
-  GameImage.find( (err, gameImages) => {
+apiRouter.get('/gameImages', (req, res) => {
+  GameImage.find((err, gameImages) => {
     if (err) { res.send(err); }
     res.json(gameImages);
+    return gameImages;
   });
 });
 
 // GET: api/gameImages/random
 apiRouter.get('/gameImages/random', (req, res) => {
-
+  GameImage.random((err, gameImage) => {
+    if (err) { res.send(err); }
+    res.json(gameImage);
+  });
 });
 
 /*
@@ -64,29 +63,30 @@ apiRouter.get('/gameImages/random', (req, res) => {
 apiRouter.route('/players')
 
   // POST: api/players
-  .post( (req, res) => {
-    var player = new Player({name: req.body.name});
+  .post((req, res) => {
+    const player = new Player({ name: req.body.name });
 
 
     player.save((err) => {
       if (err) {
         res.send(err);
       }
-      res.json({message: "player created"});
+      res.json({ message: 'player created' });
     });
   })
 
   // GET: api/players
-  .get( (req, res) => {
-    Player.find( (err, players) => {
+  .get((req, res) => {
+    Player.find((err, players) => {
       if (err) { res.send(err); }
       res.json(players);
+      return players;
     });
   });
 
 apiRouter.route('/players/:player_id')
   // GET: api/players/5
-  .get( (req, res) => {
+  .get((req, res) => {
     Player.findById(req.params.player_id, (err, player) => {
       if (err) { res.send(err); }
       res.json(player);
@@ -94,7 +94,7 @@ apiRouter.route('/players/:player_id')
   })
 
   // PUT: api/players/5
-  .put( (req, res) => {
+  .put((req, res) => {
     Player.findById(req.res.player_id, (err, player) => {
       if (err) { res.send(err); }
 
