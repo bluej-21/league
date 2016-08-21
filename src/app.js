@@ -1,7 +1,7 @@
-var express = require('express');
+import express from 'express';
 
-var routes = require('./routes/routes');
-var api = require('./routes/api');
+import routes from './routes/routes';
+import api from './routes/api';
 
 
 var app = express();

@@ -1,4 +1,5 @@
-var mongoose = require('mongoose');
+import mongoose from 'mongoose';
+
 var LeagueSchema = mongoose.Schema({
 	name: String,
 	numberPlayers: Number,

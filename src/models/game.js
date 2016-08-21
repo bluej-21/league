@@ -1,4 +1,4 @@
-var mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 var GameSchema = new mongoose.Schema({
 	name: String,
