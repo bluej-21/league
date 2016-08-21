@@ -1,12 +1,9 @@
 import { Router as router } from 'express';
 import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
-import Game from '../models/game';
-import League from '../models/league';
 import Player from '../models/player';
 import GameImage from '../models/gameImg';
-import config from '../../config';
-
+// ^ move to diff file
 mongoose.connect('mongodb://localhost/league');
 
 const apiRouter = router();
@@ -27,7 +24,9 @@ apiRouter.use((req, res, next) => {
 /*
  * test database
  */
-db.on('error', console.error.bind(console, 'connection error'));
+db.on('error', () => {
+  // add logger
+});
 db.on('open', () => {
 	// console.log('connected!');
 });
@@ -102,10 +101,10 @@ apiRouter.route('/players/:player_id')
       player.name = req.body.name;
 
       // save player data
-      player.save( (err) => {
-        if (err) { res.send(err); }
+      player.save((error) => {
+        if (error) { res.send(err); }
         res.json({
-          message: "player updated"
+          message: 'player updated',
         });
       });
     });

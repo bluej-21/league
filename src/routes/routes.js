@@ -1,12 +1,13 @@
-var express = require('express');
-var router = express.Router();
+import { Router as router } from 'express';
 
-router.get('/', function (req, res) {
-    res.render('index.html');
+const rout = router();
+
+rout.get('/', (req, res) => {
+  res.render('index.html');
 });
 
-router.get('/about', function (req, res) {
-    res.render('about.html');
+rout.get('/about', (req, res) => {
+  res.render('about.html');
 });
 
-module.exports = router;
+module.exports = rout;
